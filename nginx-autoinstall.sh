@@ -69,7 +69,7 @@ case $OPTION in
 		rm default
 		cd /etc/nginx/sites-available
 		rm default
-		nano $fichierinstall
+		
 
 
 		cat >> $fichierinstall << _NTPconf_
