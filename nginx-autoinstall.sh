@@ -110,7 +110,7 @@ _NTPconf_
 
 		echo ""
 		echo "Mise en place en enable"
-		ln -s /etc/nginx/sites-available/$fichierinstall/etc/nginx/sites-enabled/$fichierinstall
+		ln -s /etc/nginx/sites-available/$fichierinstall /etc/nginx/sites-enabled/$fichierinstall
 
 		cd /var/www
 		mkdir $NGINX_DIRECTORY
