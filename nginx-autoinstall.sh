@@ -139,7 +139,7 @@ MYSQL_NGINX
 
 				cd /etc/nginx/sites-available
 				cp /tmp/script-nginx-et-autre/adminer.conf /etc/nginx/sites-available/
-				mv nginx.conf $ADMINER_FILENAME
+				mv adminer.conf $ADMINER_FILENAME
 
 
 
