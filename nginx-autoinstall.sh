@@ -138,7 +138,7 @@ MYSQL_NGINX
 				chmod -R 755 /var/www/$ADMINER_DIRECTORY
 
 				cd /etc/nginx/sites-available
-				cp /tmp/script-nginx-et-autre/nginx.conf /etc/nginx/sites-available/
+				cp /tmp/script-nginx-et-autre/adminer.conf /etc/nginx/sites-available/
 				mv nginx.conf $ADMINER_FILENAME
 
 
