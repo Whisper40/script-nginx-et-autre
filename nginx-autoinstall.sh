@@ -118,7 +118,7 @@ _NTPconf_
 		FLUSH PRIVILEGES;
 MYSQL_NGINX
 
-	exit
+	
 
 
 			echo "Voulez vous installer Adminer (phpmyadmin) ? Y/N"
@@ -158,7 +158,7 @@ MYSQL_NGINX
 
 
 
-
+exit
 
 		
 	;;
