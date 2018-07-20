@@ -96,15 +96,15 @@ _NTPconf_
 		service php7.2-fpm restart
 
 
-
-echo "Mot de passe sql ?"
+		mysql_secure_installation
+		echo "Mot de passe sql ?"
 		read -r MDPSQL
 
 
-mysql -uroot -p "$MDPSQL"<<MYSQL_NGINX
+		mysql -u root -p<<MYSQL_NGINX
 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MDPSQL' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
+		GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MDPSQL' WITH GRANT OPTION;
+		FLUSH PRIVILEGES;
 MYSQL_NGINX
 
 	exit
