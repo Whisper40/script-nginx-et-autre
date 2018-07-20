@@ -102,7 +102,7 @@ _NTPconf_
 		
 		if [ "$REPSQL" = "Y" ]; then
 				mysql_secure_installation
-				break
+				
 		else
 			echo "L'installation sécurisée n'a pas été exéctuée ! "
 		fi	
