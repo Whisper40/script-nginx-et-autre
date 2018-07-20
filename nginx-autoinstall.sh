@@ -18,12 +18,12 @@ fi
 
 clear
 echo ""
-echo "Bienvenue dans l'installation de Nginx et modules complémentaires"
+echo "${CRED}Bienvenue dans l'installation de Nginx et modules complémentaires${CEND}"
 echo ""
-echo "Que souhaitez vous faire ? ?"
-echo "   1) Installer NGINX+PHP7.2"
+echo "${CRED}Que souhaitez vous faire ? ?${CEND}"
+echo "   1) ${CRED} Installer NGINX+PHP7.2${CEND}"
 echo "   2) "
-echo "   3) Installed NGINX+PHP7.2+ADMINER"
+echo "   3) ${CRED} Installed NGINX+PHP7.2+ADMINER${CEND}"
 echo "   4) Exit"
 echo ""
 while [[ $OPTION !=  "1" && $OPTION != "2" && $OPTION != "3" && $OPTION != "4" ]]; do
@@ -119,6 +119,44 @@ _NTPconf_
 MYSQL_NGINX
 
 	exit
+
+
+			echo "Voulez vous installer Adminer (phpmyadmin) ? Y/N"
+			read -r REPADMINER
+
+		
+		
+		if [ "$REPADMINER" = "Y" ]; then
+				read -p "Quel nom de fichier souhaitez vous utiliser ? : " ADMINER_FILENAME
+				read -p "Entrer le port de votre choix : " ADMINER_PORT
+				read -p "Entrer le dossier de destination (/var/www/DOSSIER) " ADMINER_DIRECTORY
+				cd /var/www/
+				mkdir $ADMINER_DIRECTORY
+				cd $ADMINER_DIRECTORY
+				wget https://github.com/vrana/adminer/releases/download/v4.6.3/adminer-4.6.3.php
+				mv adminer-4.6.3.php adminer.php
+				chmod -R 755 /var/www/$ADMINER_DIRECTORY
+
+				cd /etc/nginx/sites-available
+				cp /tmp/script-nginx-et-autre/nginx.conf /etc/nginx/sites-available/
+				mv nginx.conf $ADMINER_FILENAME
+
+
+
+				sed -i "s|@ADMINER_PORT@|$ADMINER_PORT|g;" /etc/nginx/sites-available/$ADMINER_FILENAME
+				sed -i "s|@ADMINER_DIRECTORY@|$ADMINER_DIRECTORY|g;" /etc/nginx/sites-available/$ADMINER_FILENAME
+				ln -s /etc/nginx/sites-available/ADMINER_FILENAME /etc/nginx/sites-enabled/ADMINER_FILENAME
+
+				service mysql restart
+				service nginx restart
+				service php7.2-fpm restart
+
+				
+		else
+			echo "L'installation d'Adminer n'a pas étée éxécutée ! "
+		fi
+
+
 
 
 
