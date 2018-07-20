@@ -70,41 +70,10 @@ case $OPTION in
 		cd /etc/nginx/sites-available
 		rm default
 		wget https://raw.githubusercontent.com/Whisper40/script-nginx-et-autre/nginx.conf -P /etc/nginx/sites-available/
+		mv nginx.conf $fichierinstall
+
+
 		
-
-
-		cat >> $fichierinstall << _NTPconf_
-
-		server {
-		#Permet d'écouter sur le port 80 de l'IPv4 de votre serveur
-		       listen @NGINX_PORT@;
-		#Permet d'écouter sur le port 80 de l'IPv6 de votre serveur
-		       listen [::]:@NGINX_PORT@;
-
-		#Vous devez renseigner le nom de domaine de votre site internet
-		       server_name _;
-
-		#Défini le répertoire qui va accueillir les fichiers de votre site internet
-		       root /var/www/@NGINX_DIRECTORY@;
-
-		#Permet de définir l'ordre d'exécution de votre index. Ici, s'il y a deux index.php/html à la racine du site, index.php sera exécuté en priorité
-		       index index.php index.html;
-
-		#Ici, on donne l'ordre d'afficher une page 404 sur la totalité du site si un fichier n'existe pas   
-		       location / {
-		         try_files $uri $uri/ =404;
-		     }
-
-		     location ~ \.php$ {
-		        try_files $uri =404;
-		         fastcgi_index index.php;
-		         fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
-		         fastcgi_param SCRIPT_FILENAME "$document_root$fastcgi_script_name";
-		         include /etc/nginx/fastcgi_params;
-		 }
-		}
-
-_NTPconf_
 
 		sed -i "s|@NGINX_PORT@|$NGINX_PORT|g;" /etc/nginx/sites-available/$fichierinstall
 		sed -i "s|@NGINX_DIRECTORY@|$NGINX_DIRECTORY|g;" /etc/nginx/sites-available/$fichierinstall
