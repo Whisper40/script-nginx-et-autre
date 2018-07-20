@@ -95,9 +95,19 @@ _NTPconf_
 		service nginx restart
 		service php7.2-fpm restart
 
+			echo "Voulez vous lancer mysql_secure_installation ? Y/N"
+			read -r REPSQL
 
-		mysql_secure_installation
-		echo "Mot de passe sql ?"
+		
+		
+		if [ "$REPSQL" = "Y" ]; then
+				mysql_secure_installation
+				break
+		else
+			echo "L'installation sécurisée n'a pas été exéctuée ! "
+		fi	
+
+		echo "Mot de passe sql ?"		
 		read -r MDPSQL
 
 
