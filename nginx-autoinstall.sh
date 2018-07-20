@@ -69,7 +69,8 @@ case $OPTION in
 		rm default
 		cd /etc/nginx/sites-available
 		rm default
-		wget https://raw.githubusercontent.com/Whisper40/script-nginx-et-autre/nginx.conf -P /etc/nginx/sites-available/
+		
+		cp /tmp/script-nginx-et-autre/nginx.conf /etc/nginx/sites-available/
 		mv nginx.conf $fichierinstall
 
 
